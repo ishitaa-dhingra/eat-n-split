@@ -1,3 +1,4 @@
+import { useState } from "react";
 const initialFriends = [
   {
     id: 118836,
@@ -18,14 +19,32 @@ const initialFriends = [
     balance: 0,
   },
 ];
+
+function Button({ children, onClick }) {
+  return (
+    <button className="button" onClick={onClick}>
+      {children}
+    </button>
+  );
+}
+
+//--------------------------->here we used onclick as props because only html elements have that property therefore we cant assign that in the <Button> tag in the app
+
 export default function App() {
+  const [ShowAddFriend, setShowAddFriend] = useState(false);
+
+  function handleShowAddFriend() {
+    setShowAddFriend((show) => !show);
+  }
   return (
     <div className="app">
       <div className="sidebar">
         <Friendlist />
 
-        <FormAddFriend />
-        <Button>Add Friend</Button>
+        {ShowAddFriend && <FormAddFriend />}
+        <Button onClick={handleShowAddFriend}>
+          {ShowAddFriend ? "Close" : "Add Friend"}
+        </Button>
       </div>
       <FormSplitBill />
     </div>
@@ -63,9 +82,6 @@ function Friend({ friend }) {
       <Button>Select</Button>
     </li>
   );
-}
-function Button({ children }) {
-  return <button className="button">{children}</button>;
 }
 
 function FormAddFriend() {
