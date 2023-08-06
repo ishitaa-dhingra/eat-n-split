@@ -82,7 +82,7 @@ function FormAddFriend() {
 
 function FormSplitBill() {
   return (
-    <form classNme="form-split-bill">
+    <form className="form-split-bill">
       <h2>Split A Bill With X</h2>
       <label>💰Bill Value</label>
       <input type="text" />
